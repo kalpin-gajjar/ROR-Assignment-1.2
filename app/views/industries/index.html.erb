@@ -1,0 +1,15 @@
+<div class="m-5" >
+  <p style="color: green"><%= notice %></p>
+
+  <h4>Industries</h4>
+  <hr>
+
+  <div id="industries" class="d-flex flex-column">
+    <% @industries.each do |industry| %>
+      <%= render industry %>
+      <hr>
+    <% end %>
+  </div>
+
+  <%= link_to "New industry", new_industry_path %>
+</div>

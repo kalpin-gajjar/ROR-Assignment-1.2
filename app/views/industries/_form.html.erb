@@ -1,0 +1,36 @@
+<%= form_with(model: industry) do |form| %>
+  <% if industry.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(industry.errors.count, "error") %> prohibited this industry from being saved:</h2>
+
+      <ul>
+        <% industry.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-2">
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="my-2">
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="my-2">
+    <%= form.label :select_industry_sector, style: "display: block" %>
+    <% Sector.all.each do |sector| %>
+      <%= check_box_tag "industry[sector_ids][]", sector.id, @industry.sector_ids.include?(sector.id) %>
+      <%= sector.name %>
+    <% end %>
+  </div>
+  <hr>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
