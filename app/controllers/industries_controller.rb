@@ -21,6 +21,7 @@ class IndustriesController < ApplicationController
 
   # POST /industries or /industries.json
   def create
+    binding.break
     @industry = Industry.new(industry_params)
     @industry.sector_ids = params[:industry][:sector_ids]
 
@@ -38,6 +39,7 @@ class IndustriesController < ApplicationController
   # PATCH/PUT /industries/1 or /industries/1.json
   def update
     respond_to do |format|
+      @industry.sector_ids = params[:industry][:sector_ids]
       if @industry.update(industry_params)
         format.html { redirect_to industry_url(@industry), notice: "Industry was successfully updated." }
         format.json { render :show, status: :ok, location: @industry }
